@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<script>
+
+    function setCook(cname, value, ex){
+        let d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let exp = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + value + ";" + exp + ";path=/";
+
+    }
+    function getCook(cname){
+        let name = cname + "=";
+        let cook = decodeURIComponent(document.cookie);
+        let ca = cook.split(';');
+        for(let i=0; i< ca.length(); i++){
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if(c.indexOf(name) == 0){
+                return c.substring(name.lenght, c.length);
+            }
+        }
+        return "";
+    }
+    function checkCook(){
+        let user = getCook("username");
+        if ( user != "") {
+            alert( "Welcome brodie: " + user);
+        }
+        else{
+            user = prompt("Enter ur name : " , "");
+            if (user !=="" && user != NULL){
+                setCook("username", user, 365)
+            }
+        }
+        
+    }
+    window.onload = function() {
+        checkCook();
+    };
+</script>
+
+<head>
+
+</head>
+<body>
+
+</body>
+<footer> Persaud 2024 &copy </footer>
+
+
+
+</html>
